@@ -1,4 +1,5 @@
-window.addEventListener("keyup", shootLasers());
+window.addEventListener("keydown", shootLasers);
+window.addEventListener("keydown", moveCharacter);
 
 class AttackOfThePizzas {
     constructor() {
@@ -36,50 +37,54 @@ class AttackOfThePizzas {
 
 class Player {
     constructor() {
-        this.speed = ;
-        this.direction = ;
-        this.turnAngle = ;
-        this.laserSpeed = ;
+        this.speed = 0;
+        this.direction = 0;
+        this.turnAngle = 0;
+        this.laserSpeed = 0;
     }
 
-    move(event) {
+    moveChararacter(event) {
         if(event.key === "w") {
            speed++;
+            console.log("w");
        }
         else if(event.key === "a") {
            direction--;
+            console.log("a");
        }
         else if(event.key === "s") {
            direction++;
+            console.log("s");
        }
     }
 
     shootLasers(event) {
        if(event.code === "Space") {
            //shoot
+           console.log("Pew");
        }
     }
 }
 
 class AlienPizza {
     constructor() {
-        this.speed = ;
-        this.direction = ;
-        this.turnAngle = ;
-        this.laserSpeed = ;
+        this.speed = 0;
+        this.direction = 0;
+        this.turnAngle = 0;
+        this.laserSpeed = 0;
     }
 
     shootRandLasers() {
         let randNum = Math.random()
         if(randNum >= 0.75) {
-            //shoot
+            console.log("Whirr");
         }
     }
 }
 
 class Lifeboard {
     constuctor() {
-        this.lives = ;
+        this.lives = 3;
     }
 
     updateLives() {
@@ -87,9 +92,9 @@ class Lifeboard {
     }
 }
 
-class Scorebaord {
-    constuctor() {
-        this.score = ;
+class Scoreboard {
+    constructor() {
+        this.score = 0;
     }
 
     updateScore() {
@@ -98,10 +103,10 @@ class Scorebaord {
 }
 
 class Pizza {
-    constuctor() {
-        this.levelOfSize = ;
-        this.speed = ;
-        this.direction = ;
+    constructor() {
+        this.levelOfSize = 1;
+        this.speed = 0;
+        this.direction = 0;
     }
 
     breakOff() {
