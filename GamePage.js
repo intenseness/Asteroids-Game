@@ -1,7 +1,7 @@
 class AttackOfThePizzas {
     constructor() {
         this.player = new Player();
-        this.alien = new Alien();
+        this.alienPizza = new AlienPizza();
         this.pizza = new Pizza();
         this.lifeboard = new Lifeboard();
         this.scoreboard = new Scoreboard();
@@ -45,7 +45,7 @@ class Player {
     }
 }
 
-class Alien {
+class AlienPizza {
     constructor() {
         this.speed = ;
         this.direction = ;
