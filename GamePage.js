@@ -1,5 +1,8 @@
-window.addEventListener("keydown", shootLasers);
-window.addEventListener("keydown", moveCharacter);
+window.addEventListener("keydown", moveCharacter());
+window.addEventListener("keydown", pauseGame());
+window.addEventListener("keydown", shootLasers());
+
+var myPizzas = [];
 
 class AttackOfThePizzas {
     constructor() {
@@ -8,6 +11,10 @@ class AttackOfThePizzas {
         this.pizza = new Pizza();
         this.lifeboard = new Lifeboard();
         this.scoreboard = new Scoreboard();
+    }
+
+    pauseGame(event) {
+
     }
 
     updateLifeboard() {
@@ -37,32 +44,42 @@ class AttackOfThePizzas {
 
 class Player {
     constructor() {
-        this.speed = 0;
+        this.speedX = 0;
+        this.speedY = 0;
         this.direction = 0;
         this.turnAngle = 0;
         this.laserSpeed = 0;
+        this.x = window/2;
+        this.y = window/2;
+        this.elem = document.getElementById(_id);
     }
 
-    moveChararacter(event) {
-        if(event.key === "w") {
-           speed++;
+    moveCharacter(event) {
+        var keyCode = event.keyCode;
+         if(keyCode === 87) {
+           //this.speed++;
             console.log("w");
        }
-        else if(event.key === "a") {
-           direction--;
+        else if(keyCode === 63) {
+           //this.direction--;
             console.log("a");
        }
-        else if(event.key === "s") {
-           direction++;
+        else if(keyCode === 68) {
+           //this.direction++;
             console.log("s");
        }
     }
 
     shootLasers(event) {
-       if(event.code === "Space") {
+       if(keyCode === 32) {
            //shoot
            console.log("Pew");
        }
+    }
+
+    renderPlayer() {
+        this.elem.style.top = this.y + "px";
+        this.elem.style.left = this.x + "px";
     }
 }
 
@@ -72,6 +89,7 @@ class AlienPizza {
         this.direction = 0;
         this.turnAngle = 0;
         this.laserSpeed = 0;
+        this.elem = document.getElementById(_id);
     }
 
     shootRandLasers() {
@@ -79,6 +97,11 @@ class AlienPizza {
         if(randNum >= 0.75) {
             console.log("Whirr");
         }
+    }
+
+    renderShip() {
+        this.elem.style.top = this.y + "px";
+        this.elem.style.left = this.x + "px";
     }
 }
 
