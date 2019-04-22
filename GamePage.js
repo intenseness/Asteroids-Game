@@ -1,35 +1,39 @@
-window.addEventListener("keydown", moveCharacter());
-window.addEventListener("keydown", pauseGame());
-window.addEventListener("keydown", shootLasers());
-
 var myPizzas = [];
 
 class AttackOfThePizzas {
   constructor() {
     this.player = new Player();
     this.alienPizza = new AlienPizza();
-    this.pizza = new Pizza();
+    this.pizza = new Pizza(Math.random(0, window), Math.random(0, window));
     this.lifeboard = new Lifeboard();
     this.scoreboard = new Scoreboard();
+    window.addEventListener("keydown", () => {
+      if (event.keyCode == 81) {
+        this.pauseGame();
+      } else if (event.keyCode == 87) {
+        this.player.moveFoward();
+      } else if (event.keyCode == 63) {
+        this.player.turnLeft();
+      } else if (event.keyCode == 68) {
+        this.player.turnRight();
+      } else if (event.keyCode == 32) {
+        this.player.shootLasers();
+      }
+    });
   }
 
-  pauseGame(event) {}
+  pauseGame() {
+    console.log("game paused!!!!!");
+  }
 
   updateLifeboard() {}
 
-  displayLifeboard() {}
-
   updateScoreboard() {}
-
-  displayScoreboard() {}
 
   spawnAlien() {}
 
   spawnPizza() {
-    let asteroid = new Pizza(
-      Math.random(0, window.height),
-      Math.random(0, window.height)
-    );
+    let asteroid = this.pizza;
   }
 }
 
@@ -45,26 +49,25 @@ class Player {
     this.elem = document.getElementById("Player");
   }
 
-  moveCharacter(event) {
-    var keyCode = event.keyCode;
-    if (keyCode === 87) {
-      //this.speed++;
-      console.log("w");
-    } else if (keyCode === 63) {
-      //this.direction--;
-      console.log("a");
-    } else if (keyCode === 68) {
-      //this.direction++;
-      console.log("s");
-    }
+  moveFoward() {
+    this.y--;
+    this.renderPlayer()
   }
 
-  shootLasers(event) {
-    if (keyCode === 32) {
+  turnLeft() {
+    this.x--;
+    this.renderPlayer()
+  }
+
+  turnRight() {
+    this.x++;
+    this.renderPlayer()
+  }
+
+  shootLasers() {
       //shoot
       console.log("Pew");
     }
-  }
 
   renderPlayer() {
     this.elem.style.top = this.y + "px";
@@ -73,7 +76,7 @@ class Player {
 }
 
 class AlienPizza {
-  constructor() {
+  constructor(_id) {
     this.speed = 0;
     this.direction = 0;
     this.turnAngle = 0;
@@ -94,6 +97,18 @@ class AlienPizza {
   }
 }
 
+class Pizza {
+  constructor(_xpos, _ypos) {
+    this.levelOfSize = 1;
+    this.speed = 0;
+    this.direction = 0;
+    this.x = _xpos;
+    this.y = _ypos;
+  }
+
+  breakOff() {}
+}
+
 class Lifeboard {
   constuctor() {
     this.lives = 3;
@@ -110,14 +125,4 @@ class Scoreboard {
   updateScore() {}
 }
 
-class Pizza {
-  constructor(_xpos, _ypos) {
-    this.levelOfSize = 1;
-    this.speed = 0;
-    this.direction = 0;
-    this.x = _xpos;
-    this.y = _ypos;
-  }
-
-  breakOff() {}
-}
+let game = new AttackOfThePizzas();
