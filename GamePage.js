@@ -1,3 +1,5 @@
+$('.alert').alert('close');
+
 var myPizzas = [];
 
 class AttackOfThePizzas {
@@ -39,13 +41,13 @@ class AttackOfThePizzas {
 
 class Player {
   constructor() {
-    this.speedX = 0;
-    this.speedY = 0;
+    this.speedX = 50;
+    this.speedY = 50;
     this.direction = 0;
     this.turnAngle = 0;
     this.laserSpeed = 0;
-    this.x = window / 2;
-    this.y = window / 2;
+    this.x = 500;
+    this.y = 500;
     this.elem = document.getElementById("Player");
   }
 
