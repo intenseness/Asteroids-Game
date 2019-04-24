@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" type="text/css" href="Game.css" title="style">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-      <script type="text/javascript" src="GamePage.js"></script>
-    <title>Game Page</title>
-  </head>
-  <body class="jumbotron">
-      <div id="Game" style="overflow: hidden;">
-  <h2 id="Scoreboard">000000000</h2>
-  <div id="Lifeboard">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX" alt="BroccoliLife1" class="Lives" height="75" width="75">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX" alt="BroccoliLife2" class="Lives" height="75" width="75">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX" alt="BroccoliLife3" class="Lives" height="75" width="75">
-  </div>
-  <center>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <h1 class="display-4">Attack Of The Pizzas</h1>
-      <h2 class="display-5"> By Connor Meny And Gabe Hougard</h2>
-      <hr>
-      <p>You are a broccoli and your mission is to destroy the pizzas of the galaxy, which are threatening the life across the galaxy.</p>
-      <p>You want to collect the most points as possible as you survive waves of pizza attackers</p>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close" height="500" width="500">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="Game.css" title="style">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <title>Game Page</title>
+</head>
+
+<body class="jumbotron">
+  <div id="Game" style="overflow: hidden;">
+    <h2 id="Scoreboard">000000000</h2>
+    <div id="Lifeboard">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX" alt="Life1" class="Lives" height="25" width="25">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX" alt="Life2" class="Lives" height="25" width="25">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX" alt="Life3" class="Lives" height="25" width="25">
+    </div>
+    <center>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <h1 class="display-4">Attack Of The Pizzas</h1>
+        <h2 class="display-5"> By Connor Meny And Gabe Hougard</h2>
+        <hr>
+        <p>You are a broccoli and your mission is to destroy the pizzas of the galaxy, which are threatening the life across the galaxy.</p>
+        <p>You want to collect the most points as possible as you survive waves of pizza attackers</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" height="500" width="500">
             <span aria-hidden="true">&times;</span>
         </button>
-    </div>
-      <div id="Player" style="overflow: hidden;">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX" alt="BroccoliChar" id="PlayerIMG" height="100" width="100">
-    </div>
-  </center>
-
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      </div>
+      <div id="Player" style="overflow: hidden;" height="75" width="75" top="0" left="0">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX" alt="BroccoliChar" id="PlayerIMG" height="75" width="75">
+      </div>
+    </center>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    </body>
+  <script type="text/javascript" src="GamePage.js"></script>
+</body>
+
 </html>
