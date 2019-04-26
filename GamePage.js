@@ -53,13 +53,11 @@ class Player {
   constructor() {
     this.speed_x = 0;
     this.speed_y = 0;
-    //this.angularVelocity = 0;
-    //this.acceleration = 200; // pixels/second/second
+    this.angularVelocity = 0
     this.max_speed = 10; // pixels/second
     this.x = 0; //window.innerWidth / 2;
     this.y = 0; //window.innerHeight / 2;
     this.angle = 0;
-    //this.length = Math.sqrt(this.x * this.x + this.y * this.y);
     this.velocity = 0;
     this.elem = document.getElementById("Player");
   }
@@ -90,7 +88,6 @@ class Player {
     if (this.velocity < this.max_speed) {
       this.velocity += 2.5;
     }
-    //this.velocity = 10;
     console.log(this.x, this.y, this.velocity, this.angle);
   }
 
@@ -110,7 +107,7 @@ class Player {
 
   shootLasers() {
     numLaser++;
-    let greenLaser = new GreenLaser(this.x, this.y, Math.sin(this.angle * Math.PI / 180), Math.cos(this.angle * Math.PI / 180), numLaser);
+    let greenLaser = new GreenLaser(this.x, this.y, Math.sin(this.angle * Math.PI / 180), Math.cos(this.angle * Math.PI / 180), this.angle, numLaser);
     myGreenLasers.push(greenLaser);
   }
 
@@ -122,11 +119,12 @@ class Player {
 }
 
 class GreenLaser {
-    constructor(_x, _y, _speed_x, _speed_y, _id) {
+    constructor(_x, _y, _speed_x, _speed_y, _angle, _id) {
         this.x = _x;
         this.y = _y;
         this.speed_x = _speed_x;
         this.speed_y = _speed_y;
+        this.angle = _angle + 90;
         this.glaser = document.getElementById(_id);
         this.elem = document.createElement("img");
         this.elem.id = "gLaser" + _id;
