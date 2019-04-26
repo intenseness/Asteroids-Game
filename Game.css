@@ -1,4 +1,14 @@
 #Player {
-    top: 0px;
-    left: 0px;
+  min-width:75px;
+  min-height:75px;
+  display:inline-block;
+  top: 0px;
+  left: 0px;
+}
+html {
+  height: 100%;
+}
+body,
+#Game {
+  height: 100%;
 }
