@@ -181,6 +181,13 @@ class Pizza {
     this.x = _xpos;
     this.y = _ypos;
     this.speedX = 50;
+    this.pizza = document.getElementById(_id);
+    this.elem.id = "pizza" + _id;
+    this.elem.height = "125"
+    this.elem.width = "125"
+    this.elem.src = "https://courthousepizzanashua.com/wp-content/uploads/2016/10/pizza-hut-cheese-pizza.jpg";
+    gameArea.appendChild(this.elem);
+
   }
 
   spawnPizza() {}
