@@ -2,6 +2,8 @@ var myPizzas = [];
 var myGreenLasers = [];
 var maxLasers = 30;
 var numLaser = 0;
+var maxPizzas = 10;
+var numPizzas = 0;
 var gameArea = document.getElementById("Game");
 
 class AttackOfThePizzas {
@@ -22,8 +24,8 @@ class AttackOfThePizzas {
                 this.player.turnCW();
             }
             /* else if (event.keyCode == 32) {
-                            this.player.shootLasers();
-                        } */
+                this.player.shootLasers();
+            } */
         });
     }
 
@@ -135,7 +137,7 @@ class Player {
     }
 }
 
-class GreenLaser {
+/*class GreenLaser {
     constructor(_x, _y, _speed_x, _speed_y, _angle, _id) {
         this.x = _x;
         this.y = _y;
@@ -168,7 +170,7 @@ class GreenLaser {
 
 }
 
-/*class AlienPizza {
+class AlienPizza {
     constructor(_xpos, _ypos, _id) {
         this.speed = 0;
         this.direction = 0;
@@ -239,5 +241,5 @@ let game = new AttackOfThePizzas();
 let id = setInterval(frame, 10);
 
 function frame() {
-  game.update();
+    game.update();
 }
