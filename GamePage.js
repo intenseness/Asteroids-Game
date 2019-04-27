@@ -79,13 +79,13 @@ class Player {
         if (this.velocity < 0.01) {
             this.velocity = 0;
         }
-        if (this.x >= window.innerWidth) {
+        if (this.x >= window.innerWidth - 1) {
             this.x = 0;
-        } else if (this.x <= 0) {
+        } else if (this.x <= -1) {
             this.x = window.innerWidth;
-        } else if (this.y >= window.innerHeight) {
+        } else if (this.y >= window.innerHeight - 1) {
             this.y = 0;
-        } else if (this.y <= 0) {
+        } else if (this.y <= -1) {
             this.y = window.innerHeight;
         }
     }
@@ -242,9 +242,9 @@ let id = setInterval(frame, 10);
 
 function newPizzas() {
     numPizza += 10;
-    for(let i = 0; i < numPizza; i++) {
-    let pizza = new Pizza((Math.random(0,.2) * 10000), (Math.random(0,.2) * 10000), Math.sin((Math.random(0,.36) * 1000) * Math.PI / 180), Math.cos((Math.random(0,.36) * 1000) * Math.PI / 180), (Math.random(0,.36) * 1000), numPizza);
-    myPizzas.push(pizza);
+    for (let i = 0; i < numPizza; i++) {
+        let pizza = new Pizza((Math.random(0, .2) * 10000), (Math.random(0, .2) * 10000), Math.sin((Math.random(0, .36) * 1000) * Math.PI / 180), Math.cos((Math.random(0, .36) * 1000) * Math.PI / 180), (Math.random(0, .36) * 1000), numPizza);
+        myPizzas.push(pizza);
     }
 }
 
