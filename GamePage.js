@@ -53,7 +53,8 @@ class Player {
   constructor() {
     this.speed_x = 0;
     this.speed_y = 0;
-    this.angularVelocity = 0
+    this.angularVelocity = 0;
+    //this.acceleration = 200; // pixels/second/second
     this.max_speed = 10; // pixels/second
     this.x = 0; //window.innerWidth / 2;
     this.y = 0; //window.innerHeight / 2;
@@ -127,19 +128,23 @@ class GreenLaser {
         this.angle = _angle + 90;
         this.glaser = document.getElementById(_id);
         this.elem = document.createElement("img");
-        this.elem.id = "gLaser" + _id;
+        this.elem.id = "gLaser" + numLaser;
         this.elem.height = "10";
         this.elem.width = "30";
+        this.elem.style.position = "absolute";
         this.elem.src = "https://upload.wikimedia.org/wikipedia/commons/e/eb/Green_laser.png";
+        this.angle = game.player.angle;
         gameArea.appendChild(this.elem);
     }
 
     move() {
         this.x += this.speed_x;
         this.y -= this.speed_y;
+        console.log(this.x, this.y, this.speed_x, this.speed_y);
     }
 
     render() {
+        let bChar = document.getElementById("Player");
         this.elem.style.top = this.y + "px";
         this.elem.style.left = this.x + "px";
         this.elem.style.transform = "translate(" + this.x + "px, " + this.y + "px) rotateZ(" + this.angle + "deg)";
@@ -162,7 +167,9 @@ class AlienPizza {
 
   shootRandLasers() {}
 
-  renderShip() {}
+  move() {}
+
+  render() {}
 }
 
 class Pizza {
@@ -173,6 +180,13 @@ class Pizza {
     this.x = _xpos;
     this.y = _ypos;
     this.speedX = 50;
+    this.pizza = document.getElementById(_id);
+    this.elem.id = "pizza" + _id;
+    this.elem.height = "125"
+    this.elem.width = "125"
+    this.elem.src = "https://courthousepizzanashua.com/wp-content/uploads/2016/10/pizza-hut-cheese-pizza.jpg";
+    gameArea.appendChild(this.elem);
+
   }
 
   spawnPizza() {}
