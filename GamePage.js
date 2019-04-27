@@ -1,9 +1,7 @@
 var myPizzas = [];
-//var myGreenLasers = [];
-//var maxLasers = 30;
-//var numLaser = 0;
-var maxPizzas = 20;
-var numPizza = 0;
+var myGreenLasers = [];
+var maxLasers = 30;
+var numLaser = 0;
 var gameArea = document.getElementById("Game");
 
 class AttackOfThePizzas {
@@ -137,7 +135,7 @@ class Player {
     }
 }
 
-/*class GreenLaser {
+class GreenLaser {
     constructor(_x, _y, _speed_x, _speed_y, _angle, _id) {
         this.x = _x;
         this.y = _y;
@@ -167,7 +165,8 @@ class Player {
         this.elem.style.left = this.x + "px";
         this.elem.style.transform = "translate(" + this.x + "px, " + this.y + "px) rotateZ(" + this.angle + "deg)";
     }
-}*/
+
+}
 
 /*class AlienPizza {
     constructor(_xpos, _ypos, _id) {
@@ -180,11 +179,12 @@ class Player {
         this.y = _ypos;
     }
 
-    //shootRandLasers() {}
+  shootRandLasers() {}
 
-    move() {}
+  move() {}
 
-    render() {}
+  render() {}
+
 }*/
 
 class Pizza {
@@ -207,8 +207,6 @@ class Pizza {
         gameArea.appendChild(this.div);
     }
 
-    breakOff() {}
-
     move() {
         this.x += this.speed_x;
         this.y -= this.speed_y;
@@ -219,7 +217,6 @@ class Pizza {
         this.elem.style.left = this.x + "px";
         this.elem.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
     }
-
 }
 
 /*class Lifeboard {
@@ -227,28 +224,20 @@ class Pizza {
         this.lives = 3;
     }
 
-    updateLives() {}
+  updateLives() {}
 }
 
 class Scoreboard {
-    constructor() {
-        this.score = 0;
-    }
+  constructor() {
+    this.score = 0;
+  }
 
-    updateScore() {}
+updateScore() {}
 }*/
 
 let game = new AttackOfThePizzas();
 let id = setInterval(frame, 10);
 
-function newPizzas() {
-    numPizza += 10;
-    for (let i = 0; i < numPizza; i++) {
-        let pizza = new Pizza((Math.random(0, 20)) * 100, (Math.random(0, 20)) * 100, Math.sin((Math.random(0, .36) * 100) * Math.PI / 180), Math.cos((Math.random(0, .36) * 100) * Math.PI / 180), numPizza);
-        myPizzas.push(pizza);
-    }
-}
-
 function frame() {
-    game.update();
+  game.update();
 }
