@@ -9,10 +9,10 @@ var gameArea = document.getElementById("Game");
 class AttackOfThePizzas {
     constructor() {
         this.player = new Player();
-        this.alienPizza = new AlienPizza();
+        //this.alienPizza = new AlienPizza();
         this.pizza = newPizzas();
-        this.lifeboard = new Lifeboard();
-        this.scoreboard = new Scoreboard();
+        //this.lifeboard = new Lifeboard();
+        //this.scoreboard = new Scoreboard();
         window.addEventListener("keydown", () => {
             if (event.keyCode == 81) {
                 this.pauseGame();
@@ -112,10 +112,10 @@ class Player {
     }
 
     collision() {
-        if (this.x < game.pizza.x + rect2.w &&
-            this.x + this.elem.width > rect2.x &&
-            rect1.y < rect2.y + rect2.h &&
-            rect1.h + rect1.y > rect2.y) {
+        if (this.x < game.pizza.x + game.pizza.div.width &&
+            this.x + this.elem.width > game.pizza.x &&
+            this.y < game.pizza.y + game.pizza.div.height &&
+            this.elem.height + this.y > game.pizza.y) {
             // collision detected!
             this.color("green");
         } else {
@@ -198,6 +198,7 @@ class Pizza {
         this.elem = document.createElement("img");
         this.div = document.createElement("div");
         this.pizza = document.getElementById(_id);
+        this.div.id = this.pizza;
         this.elem.id = "pizza" + numPizza;
         this.elem.height = "100"
         this.elem.width = "132"
@@ -208,9 +209,16 @@ class Pizza {
 
     breakOff() {}
 
-    move() {}
+    move() {
+        this.x += this.speed_x;
+        this.y -= this.speed_y;
+    }
 
-    render() {}
+    render() {
+        this.elem.style.top = this.y + "px";
+        this.elem.style.left = this.x + "px";
+        this.elem.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
+    }
 
 }
 
