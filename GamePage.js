@@ -35,6 +35,10 @@ class AttackOfThePizzas {
     console.log("game paused!!!!!");
   }
 
+  spawnPizza() {
+
+  }
+
   updateLifeboard() {}
 
   updateScoreboard() {}
@@ -45,6 +49,10 @@ class AttackOfThePizzas {
       for(let i = 0; i < myGreenLasers.length; i++) {
           myGreenLasers[i].move();
           myGreenLasers[i].render();
+      }
+      for(let i = 0; i < myPizzas.length; i++) {
+          myPizzas[i].move();
+          myPizzas[i].render();
       }
   }
 }
@@ -153,7 +161,7 @@ class GreenLaser {
 }
 
 class AlienPizza {
-  constructor(_id, _xpos, _ypos) {
+  constructor(_xpos, _ypos, _id) {
     this.speed = 0;
     this.direction = 0;
     this.turnAngle = 0;
@@ -163,8 +171,6 @@ class AlienPizza {
     this.y = _ypos;
   }
 
-  spawnAlien() {}
-
   shootRandLasers() {}
 
   move() {}
@@ -173,25 +179,27 @@ class AlienPizza {
 }
 
 class Pizza {
-  constructor(_xpos, _ypos) {
-    this.levelOfSize = 1;
-    this.speed = 0;
-    this.direction = 0;
+  constructor(_xpos, _ypos, _speed_x, _speed_y, id_, _sizelevel) {
+    this.levelOfSize = _sizelevel;
+    this.speed_x = _speed_x;
+    this.speed_y = _speed_y;
+    this.angle = 0;
     this.x = _xpos;
     this.y = _ypos;
-    this.speedX = 50;
     this.pizza = document.getElementById(_id);
     this.elem.id = "pizza" + _id;
     this.elem.height = "125"
     this.elem.width = "125"
     this.elem.src = "https://courthousepizzanashua.com/wp-content/uploads/2016/10/pizza-hut-cheese-pizza.jpg";
     gameArea.appendChild(this.elem);
-
   }
 
-  spawnPizza() {}
-
   breakOff() {}
+
+  move() {}
+
+  render() {}
+
 }
 
 class Lifeboard {
