@@ -79,9 +79,9 @@ class Player {
             this.velocity = 0;
         }
 
-        this.angularVelocity *= 0.975; // drag
-        if (this.velocity < 0.01) {
-            this.velocity = 0;
+        this.angularVelocity *= 0.975; //drag
+        if(this.angularVelocity < 0.01) {
+            this.angularVelocity = 0;
         }
 
         if (this.x >= window.innerWidth - 1) {
@@ -104,16 +104,16 @@ class Player {
 
     turnCCW() {
         //this.angle -= 6;
-        if (this.angularVelocity > -1) {
-            this.angularVelocity -= 0.75;
-        }
+        if(this.angularVelocity > -1) {
+          this.angularVelocity -= 0.75;
+           }
     }
 
     turnCW() {
         //this.angle += 6;
-        if (this.angularVelocity < 1) {
-            this.angularVelocity += 0.75;
-        }
+        if(this.angularVelocity < 1) {
+        this.angularVelocity += 0.75;
+          }
     }
 
     collision() {
@@ -212,7 +212,7 @@ class Pizza {
     }
 
     move() {
-        let angle = Math.random() * 2 * Math.PI;
+        let angle = Math.random()* 2 * Math.PI;
         let direction_x = Math.sin(angle);
         let direction_y = Math.cos(angle);
         this.x += this.speed_x * direction_x;
