@@ -1,9 +1,9 @@
 var myPizzas = [];
-//var myGreenLasers = [];
-//var maxLasers = 30;
-//var numLaser = 0;
+var myGreenLasers = [];
+var maxLasers = 30;
+var numLaser = 0;
 var maxPizzas = 10;
-var numPizza = 0;
+var numPizzas = 0;
 var gameArea = document.getElementById("Game");
 
 class AttackOfThePizzas {
@@ -202,16 +202,18 @@ class Pizza {
         this.pizza = document.getElementById(_id);
         this.div.id = this.pizza;
         this.elem.id = "pizza" + numPizza;
-        this.elem.height = "75";
-        this.elem.width = "99";
+        this.elem.height = "55"
+        this.elem.width = "66"
         this.elem.src = "https://courthousepizzanashua.com/wp-content/uploads/2016/10/pizza-hut-cheese-pizza.jpg";
         this.div.appendChild(this.elem);
         gameArea.appendChild(this.div);
     }
 
     move() {
-        this.x += this.speed_x;
-        this.y -= this.speed_y;
+        angle = random(0, 2π)
+        direction = vector(cos(angle), sin(angle))
+        xPosition += (speed * direction.x)
+        yPosition += (speed * direction.y)
     }
 
     render() {
@@ -239,14 +241,6 @@ updateScore() {}
 
 let game = new AttackOfThePizzas();
 let id = setInterval(frame, 10);
-
-function newPizzas() {
-    numPizza += 10;
-    for(let i = 0; i < numPizza; i++) {
-    let pizza = new Pizza((Math.random(0,.2) * 10000), (Math.random(0,.2) * 10000), Math.sin((Math.random(0,.36) * 1000) * Math.PI / 180), Math.cos((Math.random(0,.36) * 1000) * Math.PI / 180), (Math.random(0,.36) * 1000), numPizza);
-    myPizzas.push(pizza);
-    }
-}
 
 function frame() {
     game.update();
