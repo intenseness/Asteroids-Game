@@ -10,10 +10,7 @@ class AttackOfThePizzas {
     constructor() {
         this.player = new Player();
         this.alienPizza = new AlienPizza();
-        this.pizza = new Pizza(
-            Math.random(0, window.innerWidth),
-            Math.random(0, window.innerHeight)
-        );
+        this.pizza = newPizzas();
         this.lifeboard = new Lifeboard();
         this.scoreboard = new Scoreboard();
         window.addEventListener("keydown", () => {
@@ -115,7 +112,16 @@ class Player {
     }
 
     collision() {
-
+        if (this.x < game.pizza.x + rect2.w &&
+            this.x + this.elem.width > rect2.x &&
+            rect1.y < rect2.y + rect2.h &&
+            rect1.h + rect1.y > rect2.y) {
+            // collision detected!
+            this.color("green");
+        } else {
+            // no collision
+            this.color("blue");
+        }
     }
 
     /*shootLasers() {
@@ -163,7 +169,7 @@ class Player {
     }
 }*/
 
-class AlienPizza {
+/*class AlienPizza {
     constructor(_xpos, _ypos, _id) {
         this.speed = 0;
         this.direction = 0;
@@ -179,7 +185,7 @@ class AlienPizza {
     move() {}
 
     render() {}
-}
+}*/
 
 class Pizza {
     constructor(_xpos, _ypos, _speed_x, _speed_y, _id, _sizelevel) {
@@ -208,7 +214,7 @@ class Pizza {
 
 }
 
-class Lifeboard {
+/*class Lifeboard {
     constuctor() {
         this.lives = 3;
     }
@@ -222,7 +228,7 @@ class Scoreboard {
     }
 
     updateScore() {}
-}
+}*/
 
 let game = new AttackOfThePizzas();
 let id = setInterval(frame, 10);
