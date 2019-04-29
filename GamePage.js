@@ -1,4 +1,5 @@
 var myScore = 0;
+var myLives = 3;
 var myPizzas = [];
 //var myGreenLasers = [];
 //var maxLasers = 30;
@@ -39,8 +40,6 @@ class AttackOfThePizzas {
     }
 
     updateLifeboard() {}
-
-    updateScoreboard() {}
 
     update() {
         this.scoreboard.updateScore();
@@ -101,7 +100,6 @@ class Player {
         if (this.velocity < this.max_speed) {
             this.velocity += 2.5;
         }
-        console.log(this.x, this.y, this.angle, this.angularVelocity);
     }
 
     turnCCW() {
@@ -210,9 +208,9 @@ class Pizza {
 
     newPizzas() {
         for (let i = 0; i < maxPizzas; i++) {
-        let pizza = new Pizza((Math.random() * 2000), (Math.random() * 1000), Math.random() * 5, Math.random() * 5, numPizza);
-        numPizza++;
-        myPizzas.push(pizza);
+            let pizza = new Pizza((Math.random() * 2000), (Math.random() * 1000), Math.random() * 5, Math.random() * 5, numPizza);
+            numPizza++;
+            myPizzas.push(pizza);
         }
     }
 
@@ -245,17 +243,18 @@ class Lifeboard {
         this.lives = 3;
     }
 
+    loseLife() {}
+
     updateLives() {}
 }
 
 class Scoreboard {
     constructor() {
-        this.score = myScore;
         this.scoreboard = document.getElementById("Scoreboard");
     }
 
     updateScore() {
-        this.scoreboard.innerHTML = "Score: " + this.score;
+        this.scoreboard.innerHTML = "SCORE: " + myScore;
     }
 }
 
