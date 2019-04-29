@@ -1,8 +1,9 @@
+var myScore = 0;
 var myPizzas = [];
 //var myGreenLasers = [];
 //var maxLasers = 30;
 //var numLaser = 0;
-var maxPizzas = 10;
+var maxPizzas = 15;
 var numPizza = 1;
 var gameArea = document.getElementById("Game");
 
@@ -11,8 +12,8 @@ class AttackOfThePizzas {
         this.player = new Player();
         //this.alienPizza = new AlienPizza();
         this.pizza = new Pizza((Math.random() * 2000), (Math.random() * 1000), Math.random() * 5, Math.random() * 5, 0);
-        //this.lifeboard = new Lifeboard();
-        //this.scoreboard = new Scoreboard();
+        this.lifeboard = new Lifeboard();
+        this.scoreboard = new Scoreboard();
         window.addEventListener("keydown", () => {
             if (event.keyCode == 81) {
                 this.pauseGame();
@@ -42,9 +43,10 @@ class AttackOfThePizzas {
     updateScoreboard() {}
 
     update() {
+        this.scoreboard.updateScore();
         this.player.move();
         this.player.render();
-        this.pizza.collision();
+        //this.pizza.collision();
         /*for (let i = 0; i < myGreenLasers.length; i++) {
             myGreenLasers[i].move();
             myGreenLasers[i].render();
@@ -103,14 +105,12 @@ class Player {
     }
 
     turnCCW() {
-        //this.angle -= 6;
         if (this.angularVelocity > -1.75) {
             this.angularVelocity -= 0.75;
         }
     }
 
     turnCW() {
-        //this.angle += 6;
         if (this.angularVelocity < 1.75) {
             this.angularVelocity += 0.75;
         }
@@ -190,19 +190,14 @@ class Pizza {
         this.y = _ypos;
         this.angle = Math.random() * 2 * Math.PI;
         this.elem = document.createElement("img");
-        this.div = document.createElement("div");
-        this.div.id = "pizzaContainer" + numPizza;
         this.elem.id = "pizza" + numPizza;
         this.elem.height = "87.5"
         this.elem.width = "115.5"
-        this.div.height = "87.5"
-        this.div.width = "115.5"
         this.elem.src = "https://courthousepizzanashua.com/wp-content/uploads/2016/10/pizza-hut-cheese-pizza.jpg";
-        this.div.appendChild(this.elem);
-        gameArea.appendChild(this.div);
+        gameArea.appendChild(this.elem);
     }
 
-    collision() {
+    /*collision() {
         if (game.player.x < this.x + this.div.width &&
             game.player.x + game.player.elem.width > this.x &&
             game.player.y < this.y + this.div.height &&
@@ -211,12 +206,14 @@ class Pizza {
         } else {
             console.log("Not Detecting");
         }
-    }
+    }*/
 
     newPizzas() {
+        for (let i = 0; i < maxPizzas; i++) {
         let pizza = new Pizza((Math.random() * 2000), (Math.random() * 1000), Math.random() * 5, Math.random() * 5, numPizza);
         numPizza++;
         myPizzas.push(pizza);
+        }
     }
 
     move() {
@@ -243,7 +240,7 @@ class Pizza {
     }
 }
 
-/*class Lifeboard {
+class Lifeboard {
     constuctor() {
         this.lives = 3;
     }
@@ -253,19 +250,22 @@ class Pizza {
 
 class Scoreboard {
     constructor() {
-        this.score = 0;
+        this.score = myScore;
+        this.scoreboard = document.getElementById("Scoreboard");
     }
 
-    updateScore() {}
-}*/
+    updateScore() {
+        this.scoreboard.innerHTML = "Score: " + this.score;
+    }
+}
 
 let game = new AttackOfThePizzas();
 let id = setInterval(frame, 10);
 
-for (let i = 0; i < maxPizzas; i++) {
-    game.pizza.newPizzas();
-}
+game.pizza.newPizzas();
+
 
 function frame() {
+    myScore++;
     game.update();
 }
