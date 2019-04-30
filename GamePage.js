@@ -12,7 +12,7 @@ class AttackOfThePizzas {
     constructor() {
         this.player = new Player();
         //this.alienPizza = new AlienPizza();
-        this.pizza = new Pizza((Math.random() * 2000), (Math.random() * 1000), Math.random() * 5, Math.random() * 5, 0);
+        this.pizza = new Pizza((Math.random() + 0.01) * 2000, (Math.random() + 0.01) * 900, (Math.random() + 0.1) * 5, (Math.random() + 0.1) * 5, 1);
         this.lifeboard = new Lifeboard();
         this.scoreboard = new Scoreboard();
         window.addEventListener("keydown", () => {
@@ -45,7 +45,7 @@ class AttackOfThePizzas {
         this.scoreboard.updateScore();
         this.player.move();
         this.player.render();
-        //this.pizza.collision();
+        this.pizza.collision();
         /*for (let i = 0; i < myGreenLasers.length; i++) {
             myGreenLasers[i].move();
             myGreenLasers[i].render();
@@ -68,6 +68,8 @@ class Player {
         this.angle = 0;
         this.velocity = 0;
         this.elem = document.getElementById("Player");
+        this.radius = 50;
+        this.elem.style.borderRadius = this.radius + "px";
     }
 
     move() {
@@ -85,14 +87,14 @@ class Player {
             this.angularVelocity = 0;
         }
 
-        if (this.x >= window.innerWidth - 1) {
+        if (this.x >= 2450) {
             this.x = 0;
         } else if (this.x <= -1) {
-            this.x = window.innerWidth;
-        } else if (this.y >= window.innerHeight) {
+            this.x = 2450;
+        } else if (this.y >= 1000) {
             this.y = 0;
         } else if (this.y <= -1) {
-            this.y = window.innerHeight;
+            this.y = 1000;
         }
     }
 
@@ -187,28 +189,35 @@ class Pizza {
         this.x = _xpos;
         this.y = _ypos;
         this.angle = Math.random() * 2 * Math.PI;
+        this.div = document.createElement("div");
         this.elem = document.createElement("img");
+        this.div.id = "pizzaContainer" + numPizza;
         this.elem.id = "pizza" + numPizza;
-        this.elem.height = "87.5"
-        this.elem.width = "115.5"
+        this.div.height = "90";
+        this.div.width = "120";
+        this.elem.height = "90";
+        this.elem.width = "120";
+        this.radius = 120;
+        this.elem.style.borderRadius = this.radius + "px";
         this.elem.src = "https://courthousepizzanashua.com/wp-content/uploads/2016/10/pizza-hut-cheese-pizza.jpg";
-        gameArea.appendChild(this.elem);
+        this.div.style.position = "absolute";
+        this.div.appendChild(this.elem);
+        gameArea.appendChild(this.div);
     }
 
-    /*collision() {
-        if (game.player.x < this.x + this.div.width &&
-            game.player.x + game.player.elem.width > this.x &&
-            game.player.y < this.y + this.div.height &&
-            game.player.elem.height + game.player.y > this.y) {
-            console.log("Detecting");
-        } else {
-            console.log("Not Detecting");
+    collision() {
+        let dx = game.player.x - this.x;
+        let dy = game.player.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < game.player.radius + this.radius) {
+            console.log("Hit");
         }
-    }*/
+    }
 
     newPizzas() {
         for (let i = 0; i < maxPizzas; i++) {
-            let pizza = new Pizza((Math.random() * 2000), (Math.random() * 1000), Math.random() * 5, Math.random() * 5, numPizza);
+            let pizza = new Pizza((Math.random() + 0.01) * 2000, (Math.random() + 0.01) * 900, (Math.random() + 0.1) * 5, (Math.random() + 0.1) * 5, numPizza);
             numPizza++;
             myPizzas.push(pizza);
         }
@@ -220,14 +229,14 @@ class Pizza {
         this.x += this.speed_x * direction_x;
         this.y -= this.speed_y * direction_y;
 
-        if (this.x >= window.innerWidth - 1) {
+        if (this.x >= 2450) {
             this.x = 0;
         } else if (this.x <= -1) {
-            this.x = window.innerWidth;
-        } else if (this.y >= window.innerHeight) {
+            this.x = 2450;
+        } else if (this.y >= 1000) {
             this.y = 0;
         } else if (this.y <= -1) {
-            this.y = window.innerHeight;
+            this.y = 1000;
         }
     }
 
@@ -262,7 +271,6 @@ let game = new AttackOfThePizzas();
 let id = setInterval(frame, 10);
 
 game.pizza.newPizzas();
-
 
 function frame() {
     myScore++;
