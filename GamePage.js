@@ -38,7 +38,7 @@ class Player {
         this.speed_x = 0;
         this.speed_y = 0;
         this.angularVelocity = 0;
-        this.max_speed = 7.5; // pixels/second
+        this.max_speed = 7.5;
         this.x = window.innerWidth / 2;
         this.y = window.innerHeight / 2;
         this.angle = 0;
@@ -63,14 +63,14 @@ class Player {
             this.angularVelocity = 0;
         }
 
-        if (this.x >= 2450) {
+        if (this.x >= 1800) {
             this.x = 0;
-        } else if (this.x <= -1) {
-            this.x = 2450;
-        } else if (this.y >= 1000) {
-            this.y = 0;
-        } else if (this.y <= -1) {
-            this.y = 1000;
+        } else if (this.x <= 0) {
+            this.x = 1800;
+        } else if (this.y >= 900) {
+            this.y = -20;
+        } else if (this.y <= -20) {
+            this.y = 900;
         }
     }
 
@@ -147,10 +147,10 @@ class Pizza {
         this.x += this.speed_x * direction_x;
         this.y -= this.speed_y * direction_y;
 
-        if (this.x >= 1800) {
+        if (this.x >= 1700) {
             this.x = 0;
         } else if (this.x <= 0) {
-            this.x = 1800;
+            this.x = 1700;
         } else if (this.y >= 900) {
             this.y = -60;
         } else if (this.y <= -60) {
