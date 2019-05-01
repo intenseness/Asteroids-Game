@@ -13,20 +13,17 @@
     <div id="Game" style="overflow: hidden;">
         <h2 id="Scoreboard"></h2>
         <center>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-primary" role="alert" id="AlertScreen">
                 <h1 class="display-4">Attack Of The Pizzas</h1>
                 <h2 class="display-5"> By Connor Meny And Gabe Hougard</h2>
                 <hr>
                 <p>You are a broccoli and your mission is to destroy the pizzas of the galaxy, which are threatening the life across the galaxy.</p>
                 <p>You want to collect the most points as possible as you survive waves of pizza attackers</p>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close" height="500" width="500">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" height="500" width="500" position="inline" id="GameButton" class="btn btn-info" onmousedown="startGame()">Click here to start the game!</button>
             </div>
         </center>
-        <hr>
         <div id="Player" style="overflow: hidden;" height="40" width="40">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX" alt="BroccoliChar" id="PlayerIMG" height="40" width="40">
+            <img src="Broccolli.png" alt="BroccoliChar" id="PlayerIMG" height="40" width="40">
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

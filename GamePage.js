@@ -1,14 +1,16 @@
-var myScore = 0;
 var gameArea = document.getElementById("Game");
+var game;
+var id;
+var gameOn = false;
 
 class AttackOfThePizzas {
     constructor() {
         this.player = new Player();
         this.pizzas = [];
-        this.maxPizzas = 5;
+        this.maxPizzas = 10;
         this.scoreboard = new Scoreboard();
         this.newPizzas();
-
+        this.myScore = 0;
         window.addEventListener("keydown", () => {
             if (event.keyCode == 87) {
                 this.player.thrust();
@@ -20,41 +22,52 @@ class AttackOfThePizzas {
         });
     }
 
-     newPizzas() {
+    newPizzas() {
+        let centerClearDist = 50;
         for (let i = 0; i < this.maxPizzas; i++) {
-            let pizza = new Pizza(i, (Math.random() + 0.01) * 1700, (Math.random() + 0.01) * 850, (Math.random() + 0.1) * 5, (Math.random() + 0.1) * 5);
-            this.pizzas.push(pizza);
+            let xpos = (Math.random() + 0.01) * 1700;
+            let ypos = (Math.random() + 0.01) * 850;
+            if (Math.abs(xpos - window.innerWidth / 2) > centerClearDist && Math.abs(ypos - window.innerHeight / 2) > centerClearDist) {
+                let pizza = new Pizza(i, xpos, ypos, Math.random() * 4, Math.random() * 4);
+                this.pizzas.push(pizza);
+            }
         }
     }
 
     detectCollision() {
-        //use rectange one
         for (let i = 0; i < this.pizzas.length; i++) {
             let pizza = this.pizzas[i];
-            console.log("pizza", pizza.x, pizza.y);
-            console.log("player", this.player.x, this.player.y);
-            let dx = (pizza.x + pizza.width/2) - (this.player.x + this.player.width/2);
-            let dy = (pizza.y + pizza.height/2) - (this.player.y + this.player.height/2);
+            let dx = (pizza.x + pizza.width / 2) - (this.player.x + this.player.width / 2);
+            let dy = (pizza.y + pizza.height / 2) - (this.player.y + this.player.height / 2);
 
             let distance = Math.sqrt(dx * dx + dy * dy);
             console.log(dx, dy, distance);
 
-            if (distance < this.player.radius + this.pizzas[i].radius) {
-                console.log("Hit");
+            if (distance < this.player.radius + pizza.radius) {
+                //Hit
                 this.gameOver();
             }
         }
     }
 
     gameOver() {
+        let div = document.createElement("div");
         let gameOver = document.createElement("h1");
+        div.style.display = "inline-block";
+        div.style.zIndex = 7;
         gameOver.innerHTML = "Game Over";
-        gameArea.appendChild(gameOver);
-        clearInterval(id);
+        div.appendChild(gameOver)
+        gameArea.appendChild(div);
+        gameOn = false;
+    }
+
+    updateScoreboard() {
+        this.scoreboard.board.innerHTML = "SCORE: " + this.myScore;
     }
 
     update() {
         this.scoreboard.updateScore();
+        this.updateScoreboard();
         this.player.move();
         this.player.render();
         for (let i = 0; i < this.pizzas.length; i++) {
@@ -64,6 +77,9 @@ class AttackOfThePizzas {
         this.detectCollision();
     }
 }
+
+let playButton = document.getElementById("GameButton");
+playButton.addEventListener("click", startGame)
 
 class Player {
     constructor() {
@@ -76,10 +92,11 @@ class Player {
         this.angle = 0;
         this.velocity = 0;
         this.elem = document.getElementById("Player");
-        this.radius = 40;
+        this.radius = 15;
         this.width = 40;
         this.height = 40;
-        this.elem.style.borderRadius = this.radius + "px";
+        this.elem.style.zIndex = 2;
+        //Broccolli image from: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX;
     }
 
     move() {
@@ -98,12 +115,12 @@ class Player {
         }
 
         if (this.x >= 1800) {
-            this.x = 0;
-        } else if (this.x <= 0) {
+            this.x = -100;
+        } else if (this.x <= -100) {
             this.x = 1800;
         } else if (this.y >= 700) {
-            this.y = -20;
-        } else if (this.y <= -20) {
+            this.y = 200;
+        } else if (this.y <= 200) {
             this.y = 700;
         }
     }
@@ -144,17 +161,17 @@ class Pizza {
         this.elem = document.createElement("img");
         this.div.id = "pizzaContainer" + _id;
         this.elem.id = "pizza" + _id;
-        this.div.height = "90";
+        this.div.height = "120";
         this.div.width = "120";
-        this.elem.height = "90";
+        this.elem.height = "120";
         this.elem.width = "120";
-        this.height = 90
-        this.width = 120
-        this.elem.style.border = "1px solid red";
-        this.radius = 40;
-        this.elem.style.borderRadius = this.radius + "px";
-        this.elem.src = "https://courthousepizzanashua.com/wp-content/uploads/2016/10/pizza-hut-cheese-pizza.jpg";
+        this.height = 120;
+        this.width = 120;
+        this.radius = 60;
+        this.elem.src = "Pizza.png";
+        //Pizza image from: "https://courthousepizzanashua.com/wp-content/uploads/2016/10/pizza-hut-cheese-pizza.jpg";
         this.div.style.position = "absolute";
+        this.div.style.zIndex = 2;
         this.div.appendChild(this.elem);
         gameArea.appendChild(this.div);
     }
@@ -165,38 +182,46 @@ class Pizza {
         this.x += this.speed_x * direction_x;
         this.y -= this.speed_y * direction_y;
 
-        if (this.x >= 1700) {
+        if (this.x >= 1800) {
             this.x = 0;
         } else if (this.x <= 0) {
-            this.x = 1700;
-        } else if (this.y >= 700) {
-            this.y = -60;
-        } else if (this.y <= -60) {
-            this.y = 700;
+            this.x = 1800;
+        } else if (this.y >= 900) {
+            this.y = 0;
+        } else if (this.y <= 0) {
+            this.y = 900;
         }
     }
 
     render() {
         this.div.style.top = this.y + "px";
         this.div.style.left = this.x + "px";
-        //this.elem.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
     }
 }
 
 class Scoreboard {
     constructor() {
-        this.scoreboard = document.getElementById("Scoreboard");
+        this.board = document.getElementById("Scoreboard");
     }
 
     updateScore() {
-        this.scoreboard.innerHTML = "SCORE: " + myScore;
+        game.myScore++;
     }
 }
 
-let game = new AttackOfThePizzas();
-let id = setInterval(frame, 10);
+function startGame() {
+    let alertScreen = document.getElementById("AlertScreen");
+    alertScreen.style.visibility = "hidden";
+    game = new AttackOfThePizzas();
+    id = setInterval(frame, 10);
+    gameOn = true;
+    let player = document.getElementById("Player");
+    player.style.visibility = "visible";
+}
 
 function frame() {
-    myScore++;
-    game.update();
+    if (gameOn == true) {
+        game.scoreboard.updateScore();
+        game.update();
+    }
 }
