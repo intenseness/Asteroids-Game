@@ -7,7 +7,7 @@ class AttackOfThePizzas {
     constructor() {
         this.player = new Player();
         this.pizzas = [];
-        this.maxPizzas = 10;
+        this.maxPizzas = 15;
         this.scoreboard = new Scoreboard();
         this.newPizzas();
         this.myScore = 0;
@@ -25,8 +25,8 @@ class AttackOfThePizzas {
     newPizzas() {
         let centerClearDist = 50;
         for (let i = 0; i < this.maxPizzas; i++) {
-            let xpos = (Math.random() + 0.01) * 1700;
-            let ypos = (Math.random() + 0.01) * 850;
+            let xpos = (Math.random() + 0.01) * window.innerWidth;
+            let ypos = (Math.random() + 0.01) * window.innerHeight;
             if (Math.abs(xpos - window.innerWidth / 2) > centerClearDist && Math.abs(ypos - window.innerHeight / 2) > centerClearDist) {
                 let pizza = new Pizza(i, xpos, ypos, Math.random() * 4, Math.random() * 4);
                 this.pizzas.push(pizza);
@@ -83,8 +83,6 @@ playButton.addEventListener("click", startGame)
 
 class Player {
     constructor() {
-        this.speed_x = 0;
-        this.speed_y = 0;
         this.angularVelocity = 0;
         this.max_speed = 7.5;
         this.x = window.innerWidth / 2;
@@ -114,14 +112,14 @@ class Player {
             this.angularVelocity = 0;
         }
 
-        if (this.x >= 1800) {
-            this.x = -100;
-        } else if (this.x <= -100) {
-            this.x = 1800;
-        } else if (this.y >= 700) {
-            this.y = 200;
-        } else if (this.y <= 200) {
-            this.y = 700;
+        if (this.x >= window.innerWidth) {
+            this.x = 0;
+        } else if (this.x <= 0) {
+            this.x = window.innerWidth;
+        } else if (this.y >= window.innerHeight) {
+            this.y = 0;
+        } else if (this.y <= 0) {
+            this.y = window.innerHeight;
         }
     }
 
@@ -182,14 +180,14 @@ class Pizza {
         this.x += this.speed_x * direction_x;
         this.y -= this.speed_y * direction_y;
 
-        if (this.x >= 1800) {
+        if (this.x >= window.innerWidth) {
             this.x = 0;
         } else if (this.x <= 0) {
-            this.x = 1800;
-        } else if (this.y >= 900) {
+            this.x = window.innerWidth;
+        } else if (this.y >= window.innerHeight) {
             this.y = 0;
         } else if (this.y <= 0) {
-            this.y = 900;
+            this.y = window.innerHeight;
         }
     }
 
