@@ -39,10 +39,7 @@ class AttackOfThePizzas {
             let pizza = this.pizzas[i];
             let dx = (pizza.x + pizza.width / 2) - (this.player.x + this.player.width / 2);
             let dy = (pizza.y + pizza.height / 2) - (this.player.y + this.player.height / 2);
-
             let distance = Math.sqrt(dx * dx + dy * dy);
-            console.log(dx, dy, distance);
-
             if (distance < this.player.radius + pizza.radius) {
                 //Hit
                 this.gameOver();
