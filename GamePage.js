@@ -172,7 +172,7 @@ class Pizza {
     }
 
     move() {
-        let direction_x = Math.sin(this.angle);
+        let direction_x = Math.sin(this.angle); //in terms of radians
         let direction_y = Math.cos(this.angle);
         this.x += this.speed_x * direction_x;
         this.y -= this.speed_y * direction_y;
