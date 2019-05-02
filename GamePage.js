@@ -163,7 +163,7 @@ class Pizza {
         this.height = 120;
         this.width = 120;
         this.radius = 60;
-        this.elem.src = "Pizza.png";
+        this.elem.src = "https://raw.githubusercontent.com/intenseness/Asteroids-Game/master/Pizza.png";
         //Pizza image from: "https://courthousepizzanashua.com/wp-content/uploads/2016/10/pizza-hut-cheese-pizza.jpg";
         this.div.style.position = "absolute";
         this.div.style.zIndex = 2;
