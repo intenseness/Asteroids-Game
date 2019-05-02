@@ -91,7 +91,7 @@ class Player {
         this.width = 40;
         this.height = 40;
         this.elem.style.zIndex = 2;
-        //Broccolli image from: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX;
+        //Broccoli image from: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZFEr6U_pSLLABZnYzn5FhFDt-uiwq1hVxXLlKSY-KZHWyKkX;
     }
 
     move() {
